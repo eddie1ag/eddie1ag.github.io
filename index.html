@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Invitación</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slider {
+      display: flex;
+      flex-direction: column;
+      height: 400vh;
+      transition: transform 1s ease-in-out;
+    }
+
+    .slide {
+      height: 100vh;
+      width: 100vw;
+      flex-shrink: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .last-slide a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .nav-buttons {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-buttons button {
+      background: #ff69b4;
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      padding: 10px 15px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    .nav-buttons button:hover {
+      background: #e754a2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slider-container">
+    <div class="slider" id="slider">
+      <div class="slide"><img src="https://i.postimg.cc/W1RZHPqF/1.png" alt="Página 1" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/25rZCFwC/2.png" alt="Página 2" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/XYw5MD92/3.png" alt="Página 3" /></div>
+      <div class="slide last-slide">
+        <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank">
+          <img src="https://i.postimg.cc/8C4rcJKM/4.png" alt="Confirmar invitación" />
+        </a>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">↑</button>
+      <button onclick="nextSlide()">↓</button>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const totalSlides = slider.children.length;
+    let currentIndex = 0;
+    let autoScrollTimer;
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      slider.style.transform = `translateY(-${index * 100}vh)`;
+      currentIndex = index;
+      resetAutoScroll();
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    function autoScroll() {
+      if (currentIndex < totalSlides - 1) {
+        nextSlide();
+      }
+    }
+
+    function resetAutoScroll() {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = setInterval(autoScroll, 10000); // cada 10 segundos
+    }
+
+    // Iniciar scroll automático
+    resetAutoScroll();
+
+    // Swipe en móvil
+    let startY = 0;
+    slider.addEventListener('touchstart', e => startY = e.touches[0].clientY);
+    slider.addEventListener('touchend', e => {
+      let endY = e.changedTouches[0].clientY;
+      if (startY - endY > 50) nextSlide();
+      else if (endY - startY > 50) prevSlide();
+    });
+  </script>
+
+</body>
+</html>
