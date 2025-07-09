@@ -54,7 +54,7 @@
     /* Controles al lado derecho */
     .side-controls {
       position: fixed;
-      top: 30%; /* Subí más los botones */
+      top: 28%;
       right: 20px;
       transform: translateY(-50%);
       z-index: 20;
@@ -79,14 +79,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      user-select: none;
     }
 
     .side-controls button:hover {
       background: #e754a2;
     }
 
-    /* Botones de texto (Ubicaciones y Asistiré) */
     .menu-button {
       width: 85px;
       height: 28px;
@@ -94,7 +92,7 @@
       background: #ff69b4;
       color: white;
       border: none;
-      font-size: 0.55rem; /* Texto pequeño */
+      font-size: 0.5rem;
       font-weight: bold;
       cursor: pointer;
       text-align: center;
@@ -103,53 +101,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      user-select: none;
-      white-space: nowrap;
       gap: 4px;
-    }
-
-    .menu-button.location {
-      font-size: 0.55rem;
     }
 
     .menu-button.location span.icon {
       font-size: 1.1rem;
-      line-height: 1;
-      display: inline-block;
-      margin-right: 4px;
     }
 
     .menu-button.confirm {
-      font-size: 0.55rem;
-      background: #3cb371; /* Verde medio */
+      background: #3cb371;
     }
 
-    .menu-options {
-      display: none;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 8px;
-      margin-top: 8px;
-      white-space: nowrap;
-    }
-
-    .menu-options a {
-      background: #ffe4ec;
-      padding: 8px 12px;
-      border-radius: 20px;
-      text-decoration: none;
-      color: #d63384;
-      font-weight: 600;
-      font-size: 0.75rem; /* Links más pequeños */
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      transition: background 0.3s;
-    }
-
-    .menu-options a:hover {
-      background: #ffd1e0;
-    }
-
-    /* Confirmación desplegable */
+    .menu-options,
     .confirm-options {
       display: none;
       flex-direction: column;
@@ -159,40 +122,43 @@
       white-space: nowrap;
     }
 
+    .menu-options a,
     .confirm-options a {
       background: #ffe4ec;
-      padding: 8px 12px;
+      padding: 6px 10px;
       border-radius: 20px;
       text-decoration: none;
       color: #d63384;
       font-weight: 600;
-      font-size: 0.75rem; /* Links más pequeños */
+      font-size: 0.75rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      display: block;
-      cursor: pointer;
     }
 
+    .menu-options a:hover,
     .confirm-options a:hover {
       background: #ffd1e0;
     }
 
     @media (max-width: 600px) {
       .side-controls button {
-        font-size: 1rem;
-        padding: 6px 10px;
         width: 44px;
         height: 44px;
+        font-size: 1rem;
       }
 
       .menu-button {
-        width: 80px;
+        width: 78px;
         height: 26px;
-        font-size: 0.5rem;
-        border-radius: 13px;
+        font-size: 0.45rem;
       }
 
       .menu-button.location span.icon {
         font-size: 1rem;
+      }
+
+      .menu-options a,
+      .confirm-options a {
+        font-size: 0.65rem;
       }
     }
   </style>
@@ -205,32 +171,32 @@
       <div class="slide"><img src="https://i.postimg.cc/25rZCFwC/2.png" alt="Página 2" /></div>
       <div class="slide"><img src="https://i.postimg.cc/XYw5MD92/3.png" alt="Página 3" /></div>
       <div class="slide last-slide">
-        <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank" style="display:none;">
-          <img src="https://i.postimg.cc/8C4rcJKM/4.png" alt="Confirmar invitación" />
+        <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank">
+          <img src="https://i.postimg.cc/13FRjKWR/4.png" alt="Confirmar invitación" />
         </a>
       </div>
     </div>
 
-    <!-- Controles laterales -->
+    <!-- Botones laterales -->
     <div class="side-controls">
 
       <button onclick="prevSlide()" aria-label="Subir página">⬆</button>
 
       <div style="position: relative;">
-        <button class="menu-button location" onclick="toggleMenu()" aria-label="Ubicaciones">
+        <button class="menu-button location" onclick="toggleMenu()">
           <span class="icon">📍</span>
         </button>
-        <div class="menu-options" id="menuOptions" role="menu">
-          <a href="https://www.google.com/maps?q=Sal%C3%B3n+Monte+Alb%C3%A1n,+C.+Emilio+G.+Baz+50,+Independencia,+53830+Naucalpan+de+Ju%C3%A1rez,+M%C3%A9x." target="_blank" role="menuitem" tabindex="-1">Ver salón</a>
-          <a href="https://maps.app.goo.gl/ydqwTq9MYC7NMesL6?g_st=iw" target="_blank" role="menuitem" tabindex="-1">Ver iglesia</a>
+        <div class="menu-options" id="menuOptions">
+          <a href="https://www.google.com/maps?q=Sal%C3%B3n+Monte+Alb%C3%A1n,+C.+Emilio+G.+Baz+50,+Independencia,+53830+Naucalpan+de+Ju%C3%A1rez,+M%C3%A9x." target="_blank">Ver salón</a>
+          <a href="https://maps.app.goo.gl/ydqwTq9MYC7NMesL6?g_st=iw" target="_blank">Ver iglesia</a>
         </div>
       </div>
 
       <div style="position: relative;">
-        <button class="menu-button confirm" onclick="toggleConfirm()" aria-label="Confirmación">Asistiré</button>
-        <div class="confirm-options" id="confirmOptions" role="menu" aria-label="Opciones de confirmación">
-          <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20con%20el%20papá" target="_blank" role="menuitem" tabindex="-1">Confirmarle al papá</a>
-          <a href="https://wa.me/525518269580?text=Quiero%20confirmar%20con%20la%20mamá" target="_blank" role="menuitem" tabindex="-1">Confirmarle a la mamá</a>
+        <button class="menu-button confirm" onclick="toggleConfirm()">Asistiré</button>
+        <div class="confirm-options" id="confirmOptions">
+          <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20con%20el%20papá" target="_blank">Confirmarle al papá</a>
+          <a href="https://wa.me/525518269580?text=Quiero%20confirmar%20con%20la%20mamá" target="_blank">Confirmarle a la mamá</a>
         </div>
       </div>
 
@@ -270,6 +236,7 @@
       showSlide(currentIndex - 1);
     }
 
+    // Swipe móvil
     let startY = 0;
     slider.addEventListener('touchstart', e => startY = e.touches[0].clientY);
     slider.addEventListener('touchend', e => {
@@ -281,24 +248,18 @@
       }
     });
 
-    // Menú desplegable
     function toggleMenu() {
       const menu = document.getElementById('menuOptions');
-      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-
-      // Al abrir menú de ubicaciones, cerrar confirmación si abierta
       const confirm = document.getElementById('confirmOptions');
-      if (menu.style.display === 'flex') confirm.style.display = 'none';
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+      confirm.style.display = 'none';
     }
 
-    // Confirmación desplegable
     function toggleConfirm() {
       const confirm = document.getElementById('confirmOptions');
-      confirm.style.display = (confirm.style.display === 'flex') ? 'none' : 'flex';
-
-      // Al abrir confirmación, cerrar menú de ubicaciones si abierto
       const menu = document.getElementById('menuOptions');
-      if (confirm.style.display === 'flex') menu.style.display = 'none';
+      confirm.style.display = (confirm.style.display === 'flex') ? 'none' : 'flex';
+      menu.style.display = 'none';
     }
   </script>
 
