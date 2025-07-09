@@ -54,26 +54,31 @@
     /* Flechas + menú al lado derecho */
     .side-controls {
       position: fixed;
-      top: 50%;
+      top: 60%; /* bajamos un poco */
       right: 20px;
       transform: translateY(-50%);
       z-index: 20;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .side-controls button {
       background: #ff69b4;
       color: white;
       border: none;
-      font-size: 1.6rem;
-      padding: 12px 16px;
+      font-size: 1.2rem; /* más pequeño */
+      padding: 8px 12px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+      box-shadow: 0 0 8px rgba(0,0,0,0.25);
       transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .side-controls button:hover {
@@ -82,21 +87,22 @@
 
     /* Menú desplegable */
     .menu-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 70px;
-      height: 70px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: #ff69b4;
       color: white;
       border: none;
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: bold;
       cursor: pointer;
       text-align: center;
       padding: 0;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
     }
 
     .menu-options {
@@ -104,7 +110,7 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .menu-options a {
@@ -114,9 +120,10 @@
       text-decoration: none;
       color: #d63384;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       transition: background 0.3s;
+      white-space: nowrap;
     }
 
     .menu-options a:hover {
@@ -125,14 +132,16 @@
 
     @media (max-width: 600px) {
       .side-controls button {
-        font-size: 1.3rem;
-        padding: 10px 14px;
+        font-size: 1rem;
+        padding: 6px 10px;
+        width: 44px;
+        height: 44px;
       }
 
       .menu-button {
-        width: 60px;
-        height: 60px;
-        font-size: 0.9rem;
+        width: 44px;
+        height: 44px;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -153,23 +162,23 @@
 
     <!-- Controles laterales -->
     <div class="side-controls">
-      <button onclick="prevSlide()">⬆</button>
+      <button onclick="prevSlide()" aria-label="Subir página">⬆</button>
 
       <div style="position: relative;">
-        <button class="menu-button" onclick="toggleMenu()">Menú</button>
-        <div class="menu-options" id="menuOptions">
-          <a href="https://www.google.com/maps?q=Sal%C3%B3n+Monte+Alb%C3%A1n,+C.+Emilio+G.+Baz+50,+Independencia,+53830+Naucalpan+de+Ju%C3%A1rez,+M%C3%A9x." target="_blank">Ver salón</a>
-          <a href="https://maps.app.goo.gl/ydqwTq9MYC7NMesL6?g_st=iw" target="_blank">Ver iglesia</a>
-          <a href="https://wa.me/5215546477030?text=Hola%20padres%2C%20tengo%20una%20consulta%20sobre%20la%20invitación" target="_blank">Contactar padres</a>
+        <button class="menu-button" onclick="toggleMenu()" aria-label="Menú">Menú</button>
+        <div class="menu-options" id="menuOptions" role="menu">
+          <a href="https://www.google.com/maps?q=Sal%C3%B3n+Monte+Alb%C3%A1n,+C.+Emilio+G.+Baz+50,+Independencia,+53830+Naucalpan+de+Ju%C3%A1rez,+M%C3%A9x." target="_blank" role="menuitem" tabindex="-1">Ver salón</a>
+          <a href="https://maps.app.goo.gl/ydqwTq9MYC7NMesL6?g_st=iw" target="_blank" role="menuitem" tabindex="-1">Ver iglesia</a>
+          <a href="https://wa.me/5215546477030?text=Hola%20padres%2C%20tengo%20una%20consulta%20sobre%20la%20invitación" target="_blank" role="menuitem" tabindex="-1">Contactar padres</a>
         </div>
       </div>
 
-      <button onclick="nextSlideWithAudio()">⬇</button>
+      <button onclick="nextSlideWithAudio()" aria-label="Bajar página">⬇</button>
     </div>
   </div>
 
   <!-- Audio -->
-  <audio id="bg-music">
+  <audio id="bg-music" preload="auto">
     <source src="https://s3.eu-central-1.wasabisys.com/audio.com.audio/transcoding/59/80/1796687717778059-1796687720252672-1796687724851042.mp3?X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=W7IA3NSYSOQIKLY9DEVC%2F20250709%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20250709T140812Z&X-Amz-SignedHeaders=host&X-Amz-Expires=518400&X-Amz-Signature=ae1c3b465d31b74db0a9124f7bd32665b9265239ddd6b05484f2569d249af6fa" type="audio/mpeg">
     Tu navegador no soporta audio.
   </audio>
