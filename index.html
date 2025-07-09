@@ -51,10 +51,10 @@
       height: 100%;
     }
 
-    /* Controles al lado derecho */
+    /* Controles */
     .side-controls {
       position: fixed;
-      top: 28%;
+      top: 24%;
       right: 20px;
       transform: translateY(-50%);
       z-index: 20;
@@ -69,9 +69,9 @@
       color: white;
       border: none;
       font-size: 1.2rem;
-      padding: 8px 12px;
-      width: 48px;
-      height: 48px;
+      padding: 6px 10px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       cursor: pointer;
       box-shadow: 0 0 8px rgba(0,0,0,0.25);
@@ -86,13 +86,13 @@
     }
 
     .menu-button {
-      width: 85px;
-      height: 28px;
+      width: 75px;
+      height: 26px;
       border-radius: 14px;
       background: #ff69b4;
       color: white;
       border: none;
-      font-size: 0.5rem;
+      font-size: 0.45rem;
       font-weight: bold;
       cursor: pointer;
       text-align: center;
@@ -105,7 +105,7 @@
     }
 
     .menu-button.location span.icon {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     .menu-button.confirm {
@@ -117,20 +117,20 @@
       display: none;
       flex-direction: column;
       align-items: flex-end;
-      gap: 8px;
-      margin-top: 8px;
+      gap: 6px;
+      margin-top: 6px;
       white-space: nowrap;
     }
 
     .menu-options a,
     .confirm-options a {
       background: #ffe4ec;
-      padding: 6px 10px;
+      padding: 5px 8px;
       border-radius: 20px;
       text-decoration: none;
       color: #d63384;
       font-weight: 600;
-      font-size: 0.75rem;
+      font-size: 0.6rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
@@ -138,38 +138,15 @@
     .confirm-options a:hover {
       background: #ffd1e0;
     }
-
-    @media (max-width: 600px) {
-      .side-controls button {
-        width: 44px;
-        height: 44px;
-        font-size: 1rem;
-      }
-
-      .menu-button {
-        width: 78px;
-        height: 26px;
-        font-size: 0.45rem;
-      }
-
-      .menu-button.location span.icon {
-        font-size: 1rem;
-      }
-
-      .menu-options a,
-      .confirm-options a {
-        font-size: 0.65rem;
-      }
-    }
   </style>
 </head>
 <body>
 
   <div class="slider-container">
     <div class="slider" id="slider">
-      <div class="slide"><img src="https://i.postimg.cc/W1RZHPqF/1.png" alt="Página 1" /></div>
-      <div class="slide"><img src="https://i.postimg.cc/25rZCFwC/2.png" alt="Página 2" /></div>
-      <div class="slide"><img src="https://i.postimg.cc/XYw5MD92/3.png" alt="Página 3" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/YSRYVk9x/1.png" alt="Página 1" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/Rh6tNHTP/2.png" alt="Página 2" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/j5kNxXyw/3.png" alt="Página 3" /></div>
       <div class="slide last-slide">
         <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank">
           <img src="https://i.postimg.cc/13FRjKWR/4.png" alt="Confirmar invitación" />
@@ -177,10 +154,9 @@
       </div>
     </div>
 
-    <!-- Botones laterales -->
+    <!-- Controles laterales -->
     <div class="side-controls">
-
-      <button onclick="prevSlide()" aria-label="Subir página">⬆</button>
+      <button onclick="prevSlide()">⬆</button>
 
       <div style="position: relative;">
         <button class="menu-button location" onclick="toggleMenu()">
@@ -200,7 +176,7 @@
         </div>
       </div>
 
-      <button onclick="nextSlideWithAudio()" aria-label="Bajar página">⬇</button>
+      <button onclick="nextSlideWithAudio()">⬇</button>
     </div>
   </div>
 
@@ -236,7 +212,6 @@
       showSlide(currentIndex - 1);
     }
 
-    // Swipe móvil
     let startY = 0;
     slider.addEventListener('touchstart', e => startY = e.touches[0].clientY);
     slider.addEventListener('touchend', e => {
