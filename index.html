@@ -83,6 +83,54 @@
         padding: 8px 12px;
       }
     }
+
+    /* Menú flotante */
+    .floating-menu {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-options {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .menu-options a {
+      background: #ffe4ec;
+      padding: 10px 15px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      transition: background 0.3s;
+    }
+
+    .menu-options a:hover {
+      background: #ffd1e0;
+    }
   </style>
 </head>
 <body>
@@ -102,6 +150,16 @@
     <div class="nav-buttons">
       <button onclick="prevSlide()">↑</button>
       <button onclick="nextSlide()">↓</button>
+    </div>
+  </div>
+
+  <!-- Menú flotante -->
+  <div class="floating-menu">
+    <button class="menu-button" onclick="toggleMenu()">Menú</button>
+    <div class="menu-options" id="menuOptions">
+      <a href="https://maps.app.goo.gl/Xh4vPPSPhHuvfiyX6" target="_blank">Ver salón</a>
+      <a href="https://maps.app.goo.gl/ydqwTq9MYC7NMesL6?g_st=iw" target="_blank">Ver iglesia</a>
+      <a href="https://wa.me/5215546477030?text=Hola%20padres%2C%20tengo%20una%20consulta%20sobre%20la%20invitación" target="_blank">Contactar padres</a>
     </div>
   </div>
 
@@ -147,6 +205,12 @@
       if (startY - endY > 50) nextSlide();
       else if (endY - startY > 50) prevSlide();
     });
+
+    // Menú flotante
+    function toggleMenu() {
+      const menu = document.getElementById('menuOptions');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
   </script>
 
 </body>
