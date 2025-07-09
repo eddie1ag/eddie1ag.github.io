@@ -51,10 +51,10 @@
       height: 100%;
     }
 
-    /* Flechas + menú al lado derecho */
+    /* Controles al lado derecho */
     .side-controls {
       position: fixed;
-      top: 40%; /* botones más arriba */
+      top: 30%; /* Subí más los botones */
       right: 20px;
       transform: translateY(-50%);
       z-index: 20;
@@ -68,7 +68,7 @@
       background: #ff69b4;
       color: white;
       border: none;
-      font-size: 1.2rem; /* más pequeño */
+      font-size: 1.2rem;
       padding: 8px 12px;
       width: 48px;
       height: 48px;
@@ -79,21 +79,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      user-select: none;
     }
 
     .side-controls button:hover {
       background: #e754a2;
     }
 
-    /* Menú desplegable */
+    /* Botones de texto (Ubicaciones y Asistiré) */
     .menu-button {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
+      width: 85px;
+      height: 28px;
+      border-radius: 14px;
       background: #ff69b4;
       color: white;
       border: none;
-      font-size: 0.9rem;
+      font-size: 0.55rem; /* Texto pequeño */
       font-weight: bold;
       cursor: pointer;
       text-align: center;
@@ -103,6 +104,24 @@
       align-items: center;
       justify-content: center;
       user-select: none;
+      white-space: nowrap;
+      gap: 4px;
+    }
+
+    .menu-button.location {
+      font-size: 0.55rem;
+    }
+
+    .menu-button.location span.icon {
+      font-size: 1.1rem;
+      line-height: 1;
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .menu-button.confirm {
+      font-size: 0.55rem;
+      background: #3cb371; /* Verde medio */
     }
 
     .menu-options {
@@ -111,22 +130,49 @@
       align-items: flex-end;
       gap: 8px;
       margin-top: 8px;
+      white-space: nowrap;
     }
 
     .menu-options a {
       background: #ffe4ec;
-      padding: 10px 15px;
+      padding: 8px 12px;
       border-radius: 20px;
       text-decoration: none;
       color: #d63384;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.75rem; /* Links más pequeños */
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
       transition: background 0.3s;
-      white-space: nowrap;
     }
 
     .menu-options a:hover {
+      background: #ffd1e0;
+    }
+
+    /* Confirmación desplegable */
+    .confirm-options {
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 8px;
+      white-space: nowrap;
+    }
+
+    .confirm-options a {
+      background: #ffe4ec;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: 600;
+      font-size: 0.75rem; /* Links más pequeños */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      display: block;
+      cursor: pointer;
+    }
+
+    .confirm-options a:hover {
       background: #ffd1e0;
     }
 
@@ -139,9 +185,14 @@
       }
 
       .menu-button {
-        width: 44px;
-        height: 44px;
-        font-size: 0.8rem;
+        width: 80px;
+        height: 26px;
+        font-size: 0.5rem;
+        border-radius: 13px;
+      }
+
+      .menu-button.location span.icon {
+        font-size: 1rem;
       }
     }
   </style>
@@ -150,26 +201,36 @@
 
   <div class="slider-container">
     <div class="slider" id="slider">
-      <div class="slide"><img src="https://i.postimg.cc/nLqkrvM3/1.png" alt="Página 1" /></div>
-      <div class="slide"><img src="https://i.postimg.cc/8kXh1yt1/2.png" alt="Página 2" /></div>
-      <div class="slide"><img src="https://i.postimg.cc/fyymcXTn/3.png" alt="Página 3" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/W1RZHPqF/1.png" alt="Página 1" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/25rZCFwC/2.png" alt="Página 2" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/XYw5MD92/3.png" alt="Página 3" /></div>
       <div class="slide last-slide">
-        <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank">
-          <img src="https://i.postimg.cc/DyW1mqM1/4.png" alt="Confirmar invitación" />
+        <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank" style="display:none;">
+          <img src="https://i.postimg.cc/8C4rcJKM/4.png" alt="Confirmar invitación" />
         </a>
       </div>
     </div>
 
     <!-- Controles laterales -->
     <div class="side-controls">
+
       <button onclick="prevSlide()" aria-label="Subir página">⬆</button>
 
       <div style="position: relative;">
-        <button class="menu-button" onclick="toggleMenu()" aria-label="Menú">Menú</button>
+        <button class="menu-button location" onclick="toggleMenu()" aria-label="Ubicaciones">
+          <span class="icon">📍</span>
+        </button>
         <div class="menu-options" id="menuOptions" role="menu">
           <a href="https://www.google.com/maps?q=Sal%C3%B3n+Monte+Alb%C3%A1n,+C.+Emilio+G.+Baz+50,+Independencia,+53830+Naucalpan+de+Ju%C3%A1rez,+M%C3%A9x." target="_blank" role="menuitem" tabindex="-1">Ver salón</a>
           <a href="https://maps.app.goo.gl/ydqwTq9MYC7NMesL6?g_st=iw" target="_blank" role="menuitem" tabindex="-1">Ver iglesia</a>
-          <a href="https://wa.me/5215546477030?text=Hola%20padres%2C%20tengo%20una%20consulta%20sobre%20la%20invitación" target="_blank" role="menuitem" tabindex="-1">Contactar padres</a>
+        </div>
+      </div>
+
+      <div style="position: relative;">
+        <button class="menu-button confirm" onclick="toggleConfirm()" aria-label="Confirmación">Asistiré</button>
+        <div class="confirm-options" id="confirmOptions" role="menu" aria-label="Opciones de confirmación">
+          <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20con%20el%20papá" target="_blank" role="menuitem" tabindex="-1">Confirmarle al papá</a>
+          <a href="https://wa.me/525518269580?text=Quiero%20confirmar%20con%20la%20mamá" target="_blank" role="menuitem" tabindex="-1">Confirmarle a la mamá</a>
         </div>
       </div>
 
@@ -220,9 +281,24 @@
       }
     });
 
+    // Menú desplegable
     function toggleMenu() {
       const menu = document.getElementById('menuOptions');
       menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+
+      // Al abrir menú de ubicaciones, cerrar confirmación si abierta
+      const confirm = document.getElementById('confirmOptions');
+      if (menu.style.display === 'flex') confirm.style.display = 'none';
+    }
+
+    // Confirmación desplegable
+    function toggleConfirm() {
+      const confirm = document.getElementById('confirmOptions');
+      confirm.style.display = (confirm.style.display === 'flex') ? 'none' : 'flex';
+
+      // Al abrir confirmación, cerrar menú de ubicaciones si abierto
+      const menu = document.getElementById('menuOptions');
+      if (confirm.style.display === 'flex') menu.style.display = 'none';
     }
   </script>
 
