@@ -54,7 +54,7 @@
     /* Flechas + menú al lado derecho */
     .side-controls {
       position: fixed;
-      top: 60%; /* bajamos un poco */
+      top: 40%; /* botones más arriba */
       right: 20px;
       transform: translateY(-50%);
       z-index: 20;
@@ -150,12 +150,12 @@
 
   <div class="slider-container">
     <div class="slider" id="slider">
-      <div class="slide"><img src="https://i.postimg.cc/W1RZHPqF/1.png" alt="Página 1" /></div>
-      <div class="slide"><img src="https://i.postimg.cc/25rZCFwC/2.png" alt="Página 2" /></div>
-      <div class="slide"><img src="https://i.postimg.cc/XYw5MD92/3.png" alt="Página 3" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/nLqkrvM3/1.png" alt="Página 1" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/8kXh1yt1/2.png" alt="Página 2" /></div>
+      <div class="slide"><img src="https://i.postimg.cc/fyymcXTn/3.png" alt="Página 3" /></div>
       <div class="slide last-slide">
         <a href="https://wa.me/5215546477030?text=Quiero%20confirmar%20mi%20invitación" target="_blank">
-          <img src="https://i.postimg.cc/8C4rcJKM/4.png" alt="Confirmar invitación" />
+          <img src="https://i.postimg.cc/DyW1mqM1/4.png" alt="Confirmar invitación" />
         </a>
       </div>
     </div>
@@ -188,7 +188,6 @@
     const totalSlides = slider.children.length;
     const music = document.getElementById('bg-music');
     let currentIndex = 0;
-    let autoScrollTimer;
     let musicPlayed = false;
 
     function showSlide(index) {
@@ -196,7 +195,6 @@
       if (index >= totalSlides) index = totalSlides - 1;
       slider.style.transform = `translateY(-${index * 100}vh)`;
       currentIndex = index;
-      resetAutoScroll();
     }
 
     function nextSlideWithAudio() {
@@ -210,19 +208,6 @@
     function prevSlide() {
       showSlide(currentIndex - 1);
     }
-
-    function autoScroll() {
-      if (currentIndex < totalSlides - 1) {
-        showSlide(currentIndex + 1);
-      }
-    }
-
-    function resetAutoScroll() {
-      clearInterval(autoScrollTimer);
-      autoScrollTimer = setInterval(autoScroll, 10000);
-    }
-
-    resetAutoScroll();
 
     let startY = 0;
     slider.addEventListener('touchstart', e => startY = e.touches[0].clientY);
